@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eid Midterm Schedule · Vote</title>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel+Decorative:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+/* ─────────────────────────────────────────
+   PASTE YOUR WEB APP URL ON LINE BELOW ↓
+   After deploying Code.gs, find SCRIPT_URL
+   near the bottom of this file in <script>
+───────────────────────────────────────── */
+
+:root{
+  --gold:#C9943A; --gold-l:#F0C96A; --gold-p:#FDF3DC;
+  --teal:#1A6B6B; --teal-l:#2A9D8F; --teal-p:#E0F4F2;
+  --ivory:#FDFAF3; --dark:#1C1208; --cream:#F7EDD5;
+  --red:#C0504D;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Lato',sans-serif; color:var(--dark); min-height:100vh;
+  background:var(--ivory);
+  background-image:
+    radial-gradient(ellipse at 12% 8%,  rgba(201,148,58,.09) 0%,transparent 52%),
+    radial-gradient(ellipse at 88% 92%, rgba(26,107,107,.09) 0%,transparent 52%);
+  overflow-x:hidden;
+}
+
+/* ── particles ── */
+.pts{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden;}
+.pt{position:absolute;border-radius:50%;opacity:0;
+    animation:twinkle var(--d,3s) ease-in-out infinite var(--dl,0s);}
+@keyframes twinkle{0%,100%{opacity:0;transform:scale(.5);}50%{opacity:.65;transform:scale(1.35);}}
+
+/* ── layout ── */
+.wrap{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:0 18px 70px;}
+
+/* ── header ── */
+header{text-align:center;padding:48px 18px 22px;}
+.lanterns{display:flex;justify-content:center;gap:28px;margin-bottom:20px;align-items:flex-end;}
+.ln{animation:sway 3s ease-in-out infinite;transform-origin:top center;filter:drop-shadow(0 4px 12px rgba(201,148,58,.45));}
+.ln:nth-child(2){animation-delay:.45s;}
+.ln:nth-child(3){animation-delay:.9s; filter:drop-shadow(0 7px 22px rgba(201,148,58,.72));}
+.ln:nth-child(4){animation-delay:1.3s;}
+.ln:nth-child(5){animation-delay:.65s;}
+@keyframes sway{0%,100%{transform:rotate(-6deg);}50%{transform:rotate(6deg);}}
+
+.badge{
+  display:inline-block;
+  background:linear-gradient(135deg,var(--gold),#e8b84b,var(--gold));
+  color:#fff;font-family:'Cinzel Decorative',serif;font-size:.68rem;
+  letter-spacing:.32em;padding:5px 26px;border-radius:30px;margin-bottom:13px;
+  box-shadow:0 2px 14px rgba(201,148,58,.4);
+}
+h1{
+  font-family:'Cinzel Decorative',serif;
+  font-size:clamp(1.5rem,5vw,2.85rem);
+  background:linear-gradient(135deg,var(--teal) 0%,var(--gold) 55%,var(--teal) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1.22;margin-bottom:9px;
+}
+.sub{font-family:'Amiri',serif;font-size:clamp(.95rem,2.5vw,1.3rem);color:var(--teal);}
+.div-row{display:flex;align-items:center;justify-content:center;gap:12px;margin:18px auto 0;max-width:440px;}
+.div-line{flex:1;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
+
+/* ── setup banner ── */
+.setup{
+  background:linear-gradient(135deg,#0f4a4a,var(--teal));
+  color:#fff;border-radius:18px;padding:22px 26px 20px;
+  margin-bottom:30px;position:relative;overflow:hidden;
+  box-shadow:0 6px 28px rgba(26,107,107,.22);
+  transition:opacity .4s;
+}
+.setup::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M20 20v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4z'/%3E%3C/g%3E%3C/svg%3E") repeat;
+}
+.setup h3{font-family:'Cinzel Decorative',serif;font-size:.82rem;color:var(--gold-l);margin-bottom:12px;position:relative;}
+.setup ol{padding-left:20px;position:relative;}
+.setup li{font-size:.81rem;line-height:2.05;opacity:.93;}
+.setup code{background:rgba(255,255,255,.14);padding:1px 7px;border-radius:4px;font-size:.78rem;font-family:monospace;word-break:break-all;}
+.url-row{display:flex;gap:8px;margin-top:14px;position:relative;}
+.url-row input{
+  flex:1;padding:11px 14px;border-radius:10px;
+  border:2px solid rgba(255,255,255,.22);background:rgba(255,255,255,.1);
+  color:#fff;font-family:monospace;font-size:.79rem;outline:none;transition:border .2s;
+}
+.url-row input:focus{border-color:var(--gold-l);}
+.url-row input::placeholder{color:rgba(255,255,255,.38);}
+.url-save{
+  padding:11px 18px;background:var(--gold);color:#fff;border:none;
+  border-radius:10px;cursor:pointer;font-family:'Cinzel Decorative',serif;
+  font-size:.7rem;white-space:nowrap;transition:all .2s;flex-shrink:0;
+}
+.url-save:hover{background:#e8b84b;transform:translateY(-1px);}
+.url-st{font-size:.74rem;margin-top:7px;position:relative;}
+.url-st.ok{color:#80cbc4;} .url-st.no{color:#ffab91;}
+
+/* ── step indicator ── */
+.steps{display:flex;justify-content:center;align-items:center;margin:32px 0 26px;}
+.stp{display:flex;flex-direction:column;align-items:center;gap:5px;}
+.stp-c{
+  width:38px;height:38px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cinzel Decorative',serif;font-size:.74rem;
+  border:2px solid var(--gold-l);color:var(--gold);
+  background:#fff;transition:all .4s;
+}
+.stp-c.active{background:linear-gradient(135deg,var(--gold),#e8b84b);color:#fff;border-color:var(--gold);box-shadow:0 4px 14px rgba(201,148,58,.42);}
+.stp-c.done{background:var(--teal);color:#fff;border-color:var(--teal);}
+.stp-l{font-size:.63rem;color:#aaa;letter-spacing:.08em;text-transform:uppercase;}
+.stp-l.active{color:var(--gold);font-weight:700;} .stp-l.done{color:var(--teal);}
+.stp-conn{width:58px;height:2px;background:linear-gradient(to right,var(--gold-l),var(--teal-p));margin-bottom:18px;}
+
+/* ── panel ── */
+.panel{
+  background:#fff;border-radius:20px;
+  box-shadow:0 4px 30px rgba(26,107,107,.11),0 0 0 1px rgba(201,148,58,.14);
+  padding:36px 32px;margin-bottom:28px;animation:up .5s both;
+}
+@keyframes up{from{opacity:0;transform:translateY(26px);}to{opacity:1;transform:translateY(0);}}
+.ptitle{font-family:'Cinzel Decorative',serif;font-size:.92rem;color:var(--teal);margin-bottom:22px;display:flex;align-items:center;gap:10px;}
+
+/* ── name input ── */
+.iw{position:relative;}
+.iw input{
+  width:100%;padding:14px 18px 14px 48px;
+  border:2px solid rgba(201,148,58,.25);border-radius:12px;
+  font-family:'Lato',sans-serif;font-size:1rem;background:var(--ivory);color:var(--dark);outline:none;
+  transition:border .25s,box-shadow .25s;
+}
+.iw input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,148,58,.13);}
+.iw input.err{border-color:var(--red);animation:shake .38s;}
+@keyframes shake{0%,100%{transform:translateX(0);}30%{transform:translateX(-7px);}70%{transform:translateX(7px);}}
+.iw input::placeholder{color:#c4c4c4;}
+.ii{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--gold);pointer-events:none;}
+.ferr{font-size:.73rem;color:var(--red);margin-top:5px;padding-left:2px;display:none;}
+.ferr.show{display:block;}
+.hint{font-size:.73rem;color:#bbb;margin-top:5px;padding-left:2px;}
+
+/* ── option cards ── */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:18px;margin-top:10px;}
+.ocard{
+  border:2.5px solid rgba(201,148,58,.2);border-radius:16px;overflow:hidden;cursor:pointer;
+  transition:transform .25s,border-color .25s,box-shadow .25s;position:relative;user-select:none;
+}
+.ocard:hover{transform:translateY(-5px);border-color:var(--gold-l);box-shadow:0 10px 30px rgba(201,148,58,.18);}
+.ocard.sel{border-color:var(--gold);box-shadow:0 0 0 4px rgba(201,148,58,.16),0 10px 30px rgba(201,148,58,.24);}
+.ocard input[type=radio]{position:absolute;opacity:0;width:0;height:0;}
+.oh{padding:16px 18px 12px;background:linear-gradient(135deg,var(--teal),#0d4545);position:relative;overflow:hidden;}
+.oh::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M20 20v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4z'/%3E%3C/g%3E%3C/svg%3E") repeat;}
+.ol{font-family:'Cinzel Decorative',serif;font-size:.58rem;letter-spacing:.22em;color:var(--gold-l);}
+.ot{font-family:'Cinzel Decorative',serif;font-size:.87rem;color:#fff;margin-top:2px;}
+.ock{
+  position:absolute;top:12px;right:14px;width:22px;height:22px;border-radius:50%;
+  border:2px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;transition:all .25s;
+}
+.ocard.sel .ock{background:var(--gold);border-color:var(--gold);}
+.gstrip{height:10px;background:linear-gradient(90deg,var(--gold),var(--gold-l),var(--gold));position:relative;overflow:hidden;}
+.gstrip::after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(90deg,transparent 0,transparent 10px,rgba(255,255,255,.35) 10px,rgba(255,255,255,.35) 12px);}
+.otbl{width:100%;border-collapse:collapse;}
+.otbl tr{transition:background .15s;} .otbl tr:hover{background:var(--teal-p);}
+.otbl td{padding:8px 14px;font-size:.79rem;border-bottom:1px solid rgba(201,148,58,.08);}
+.otbl td:first-child{color:var(--teal);font-weight:700;font-size:.73rem;white-space:nowrap;}
+.otbl tr:last-child td{border-bottom:none;}
+.chip{display:inline-block;background:linear-gradient(135deg,var(--teal-p),#ceeee9);color:var(--teal);border-radius:20px;padding:2px 10px;font-size:.71rem;font-weight:700;border:1px solid rgba(26,107,107,.14);}
+.otbl tr:nth-child(even) .chip{background:linear-gradient(135deg,#fef6e0,#fdedc0);color:#7a4e00;border-color:rgba(201,148,58,.24);}
+
+/* ── buttons ── */
+.brow{display:flex;gap:12px;justify-content:flex-end;margin-top:24px;}
+.btn{font-family:'Cinzel Decorative',serif;font-size:.74rem;letter-spacing:.1em;padding:13px 26px;border-radius:12px;border:none;cursor:pointer;transition:all .25s;display:flex;align-items:center;gap:8px;}
+.btn-p{background:linear-gradient(135deg,var(--gold),#e8b84b);color:#fff;box-shadow:0 4px 16px rgba(201,148,58,.35);}
+.btn-p:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 26px rgba(201,148,58,.52);}
+.btn-p:disabled{opacity:.48;cursor:not-allowed;}
+.btn-s{background:#fff;color:var(--teal);border:2px solid var(--teal-p);}
+.btn-s:hover{border-color:var(--teal);background:var(--teal-p);}
+.spin{width:17px;height:17px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite;display:none;}
+.spin.on{display:block;}
+@keyframes sp{to{transform:rotate(360deg);}}
+
+/* ── status ── */
+.smsg{border-radius:10px;padding:12px 16px;font-size:.83rem;margin-top:14px;display:none;align-items:center;gap:10px;}
+.smsg.on{display:flex;}
+.smsg.e{background:#fff0f0;color:var(--red);border:1px solid rgba(192,80,77,.2);}
+
+/* ── confirm screen ── */
+.cscreen{text-align:center;padding:12px 0 18px;}
+.cmoon{margin:0 auto 20px;animation:flt 3s ease-in-out infinite;}
+@keyframes flt{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.ctitle{font-family:'Cinzel Decorative',serif;font-size:clamp(1.2rem,4vw,1.8rem);color:var(--teal);margin-bottom:8px;}
+.carabic{font-family:'Amiri',serif;font-size:1.4rem;color:var(--gold);margin-bottom:8px;}
+.csub{color:#999;font-size:.88rem;margin-bottom:20px;}
+.ccard{background:var(--cream);border-radius:14px;padding:20px 24px;margin:0 auto 22px;max-width:430px;text-align:left;border:1px solid rgba(201,148,58,.2);}
+.ccard p{font-size:.87rem;color:#555;margin-bottom:6px;line-height:1.75;}
+.ccard strong{color:var(--teal);}
+.cbadge{display:inline-block;background:linear-gradient(135deg,var(--gold),#e8b84b);color:#fff;padding:4px 18px;border-radius:20px;font-family:'Cinzel Decorative',serif;font-size:.68rem;margin-top:6px;}
+.spill{display:inline-flex;align-items:center;gap:6px;background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7;border-radius:8px;padding:6px 12px;font-size:.76rem;font-weight:700;margin-top:12px;}
+
+/* ── arabesque ── */
+.ara{margin:44px auto 0;max-width:900px;padding:0 18px;}
+
+/* ── footer ── */
+footer{text-align:center;padding:22px 18px;border-top:1px solid rgba(201,148,58,.14);margin-top:18px;}
+footer .fa{font-family:'Amiri',serif;font-size:1.05rem;color:var(--teal);}
+footer .fb{font-size:.72rem;color:#bbb;margin-top:4px;}
+
+.hidden{display:none!important;}
+@media(max-width:600px){
+  .panel{padding:22px 16px;}
+  .grid{grid-template-columns:1fr;}
+  .stp-conn{width:28px;}
+  .brow{flex-direction:column;}
+  .btn{justify-content:center;}
+}
+</style>
+</head>
+<body>
+
+<div class="pts" id="pts"></div>
+
+<div class="wrap">
+
+<!-- ══════════ HEADER ══════════ -->
+<header>
+  <div class="lanterns">
+    <!-- Gold lantern -->
+    <svg class="ln" width="28" height="60" viewBox="0 0 38 70" fill="none">
+      <line x1="19" y1="0" x2="19" y2="8" stroke="#C9943A" stroke-width="2"/>
+      <path d="M12 8Q19 6 26 8L28 14Q19 12 10 14Z" fill="#C9943A"/>
+      <rect x="10" y="14" width="18" height="3" rx="1.5" fill="#e8b84b"/>
+      <path d="M10 17Q9 35 10 53L28 53Q29 35 28 17Z" fill="url(#ga)"/>
+      <defs><linearGradient id="ga" x1="10" y1="17" x2="28" y2="53"><stop offset="0%" stop-color="#F0C96A"/><stop offset="100%" stop-color="#C9943A"/></linearGradient></defs>
+      <line x1="14" y1="17" x2="13" y2="53" stroke="rgba(255,255,255,.25)" stroke-width=".8"/>
+      <line x1="19" y1="17" x2="19" y2="53" stroke="rgba(255,255,255,.25)" stroke-width=".8"/>
+      <line x1="24" y1="17" x2="25" y2="53" stroke="rgba(255,255,255,.25)" stroke-width=".8"/>
+      <ellipse cx="19" cy="35" rx="6" ry="10" fill="rgba(255,220,100,.28)"/>
+      <rect x="10" y="53" width="18" height="3" rx="1.5" fill="#e8b84b"/>
+      <path d="M14 56L24 56L21 63L17 63Z" fill="#C9943A"/>
+      <circle cx="19" cy="64" r="2.5" fill="#C9943A" stroke="#e8b84b" stroke-width="1"/>
+    </svg>
+    <!-- Teal lantern -->
+    <svg class="ln" width="28" height="60" viewBox="0 0 38 70" fill="none">
+      <line x1="19" y1="0" x2="19" y2="8" stroke="#1A6B6B" stroke-width="2"/>
+      <path d="M12 8Q19 6 26 8L28 14Q19 12 10 14Z" fill="#1A6B6B"/>
+      <rect x="10" y="14" width="18" height="3" rx="1.5" fill="#2A9D8F"/>
+      <path d="M10 17Q9 35 10 53L28 53Q29 35 28 17Z" fill="url(#gb)"/>
+      <defs><linearGradient id="gb" x1="10" y1="17" x2="28" y2="53"><stop offset="0%" stop-color="#2A9D8F"/><stop offset="100%" stop-color="#1A6B6B"/></linearGradient></defs>
+      <ellipse cx="19" cy="35" rx="6" ry="10" fill="rgba(100,220,200,.24)"/>
+      <rect x="10" y="53" width="18" height="3" rx="1.5" fill="#2A9D8F"/>
+      <path d="M14 56L24 56L21 63L17 63Z" fill="#1A6B6B"/>
+      <circle cx="19" cy="64" r="2.5" fill="#1A6B6B" stroke="#2A9D8F" stroke-width="1"/>
+    </svg>
+    <!-- Big centre lantern -->
+    <svg class="ln" width="44" height="68" viewBox="0 0 38 70" fill="none" style="filter:drop-shadow(0 7px 22px rgba(201,148,58,.72))">
+      <line x1="19" y1="0" x2="19" y2="8" stroke="#C9943A" stroke-width="2.5"/>
+      <path d="M11 8Q19 5 27 8L29 14Q19 11 9 14Z" fill="#C9943A"/>
+      <rect x="9" y="14" width="20" height="3" rx="1.5" fill="#e8b84b"/>
+      <path d="M9 17Q8 35 9 55L29 55Q30 35 29 17Z" fill="url(#gc)"/>
+      <defs><linearGradient id="gc" x1="9" y1="17" x2="29" y2="55"><stop offset="0%" stop-color="#FDE68A"/><stop offset="100%" stop-color="#C9943A"/></linearGradient></defs>
+      <line x1="14" y1="17" x2="13" y2="55" stroke="rgba(255,255,255,.3)" stroke-width="1"/>
+      <line x1="19" y1="17" x2="19" y2="55" stroke="rgba(255,255,255,.3)" stroke-width="1"/>
+      <line x1="24" y1="17" x2="25" y2="55" stroke="rgba(255,255,255,.3)" stroke-width="1"/>
+      <ellipse cx="19" cy="36" rx="7" ry="12" fill="rgba(255,220,80,.38)"/>
+      <path d="M19 28L20.5 32L25 32L21.5 34.5L23 38.5L19 36L15 38.5L16.5 34.5L13 32L17.5 32Z" fill="rgba(255,255,255,.48)"/>
+      <rect x="9" y="55" width="20" height="3" rx="1.5" fill="#e8b84b"/>
+      <path d="M13 58L25 58L22 65L16 65Z" fill="#C9943A"/>
+      <circle cx="19" cy="66" r="3" fill="#C9943A" stroke="#e8b84b" stroke-width="1.2"/>
+    </svg>
+    <!-- Teal lantern -->
+    <svg class="ln" width="28" height="60" viewBox="0 0 38 70" fill="none">
+      <line x1="19" y1="0" x2="19" y2="8" stroke="#1A6B6B" stroke-width="2"/>
+      <path d="M12 8Q19 6 26 8L28 14Q19 12 10 14Z" fill="#1A6B6B"/>
+      <rect x="10" y="14" width="18" height="3" rx="1.5" fill="#2A9D8F"/>
+      <path d="M10 17Q9 35 10 53L28 53Q29 35 28 17Z" fill="url(#gd)"/>
+      <defs><linearGradient id="gd" x1="10" y1="17" x2="28" y2="53"><stop offset="0%" stop-color="#2A9D8F"/><stop offset="100%" stop-color="#1A6B6B"/></linearGradient></defs>
+      <ellipse cx="19" cy="35" rx="6" ry="10" fill="rgba(100,220,200,.24)"/>
+      <rect x="10" y="53" width="18" height="3" rx="1.5" fill="#2A9D8F"/>
+      <path d="M14 56L24 56L21 63L17 63Z" fill="#1A6B6B"/>
+      <circle cx="19" cy="64" r="2.5" fill="#1A6B6B" stroke="#2A9D8F" stroke-width="1"/>
+    </svg>
+    <!-- Gold lantern -->
+    <svg class="ln" width="28" height="60" viewBox="0 0 38 70" fill="none">
+      <line x1="19" y1="0" x2="19" y2="8" stroke="#C9943A" stroke-width="2"/>
+      <path d="M12 8Q19 6 26 8L28 14Q19 12 10 14Z" fill="#C9943A"/>
+      <rect x="10" y="14" width="18" height="3" rx="1.5" fill="#e8b84b"/>
+      <path d="M10 17Q9 35 10 53L28 53Q29 35 28 17Z" fill="url(#ge)"/>
+      <defs><linearGradient id="ge" x1="10" y1="17" x2="28" y2="53"><stop offset="0%" stop-color="#F0C96A"/><stop offset="100%" stop-color="#C9943A"/></linearGradient></defs>
+      <ellipse cx="19" cy="35" rx="6" ry="10" fill="rgba(255,220,100,.28)"/>
+      <rect x="10" y="53" width="18" height="3" rx="1.5" fill="#e8b84b"/>
+      <path d="M14 56L24 56L21 63L17 63Z" fill="#C9943A"/>
+      <circle cx="19" cy="64" r="2.5" fill="#C9943A" stroke="#e8b84b" stroke-width="1"/>
+    </svg>
+  </div>
+
+  <div class="badge">✦ Eid Al Fitr 1446 ✦</div>
+  <h1>Midterm Schedule Vote</h1>
+  <p class="sub">اختر جدولك المفضل · Choose your preferred schedule</p>
+  <div class="div-row">
+    <div class="div-line"></div>
+    <svg width="36" height="24" viewBox="0 0 40 28" fill="none">
+      <path d="M18 4C10 4 4 10 4 18c0 6 4 9 8 9-4-3-5-7-4-12C10 8 17 4 24 5c-2.5-.8-4.3-1-6-1Z" fill="#C9943A"/>
+      <polygon points="32,2 33.5,7 38.5,7 34.5,10 36,15 32,12 28,15 29.5,10 25.5,7 30.5,7" fill="#C9943A"/>
+    </svg>
+    <div class="div-line"></div>
+  </div>
+</header>
+
+<!-- ══════════ SETUP BANNER (hidden — URL hardcoded) ══════════ -->
+<div class="setup hidden" id="setupBanner">
+  <h3>⚙ One-Time Setup · 2 Minutes · Connect to Google Sheets</h3>
+  <ol class="setup-steps">
+    <li>Open your Google Sheet → click <strong>Extensions → Apps Script</strong></li>
+    <li>Delete all existing code · paste the entire <code>Code.gs</code> file · hit <strong>Save 💾</strong></li>
+    <li>Click <strong>Deploy → New deployment</strong> · Type: <strong>Web app</strong></li>
+    <li>Execute as: <strong>Me</strong> · Who has access: <strong>Anyone</strong> · click <strong>Deploy</strong></li>
+    <li>Copy the <strong>Web App URL</strong> and paste it below ↓</li>
+  </ol>
+  <div class="url-row">
+    <input type="text" id="urlIn" placeholder="https://script.google.com/macros/s/…/exec" />
+    <button class="url-save" onclick="saveUrl()">Save ✦</button>
+  </div>
+  <div class="url-st no" id="urlSt">⚠ No URL saved yet — votes won't be recorded until you complete setup.</div>
+</div>
+
+<!-- ══════════ STEP INDICATOR ══════════ -->
+<div class="steps">
+  <div class="stp"><div class="stp-c active" id="sc1">1</div><div class="stp-l active" id="sl1">Your Name</div></div>
+  <div class="stp-conn"></div>
+  <div class="stp"><div class="stp-c" id="sc2">2</div><div class="stp-l" id="sl2">Pick Schedule</div></div>
+  <div class="stp-conn"></div>
+  <div class="stp"><div class="stp-c" id="sc3">3</div><div class="stp-l" id="sl3">Submitted!</div></div>
+</div>
+
+<!-- ══════════ STEP 1 — NAME ══════════ -->
+<div class="panel" id="step1">
+  <div class="ptitle">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9943A" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    Enter Your Name
+  </div>
+  <div class="iw">
+    <svg class="ii" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <input type="text" id="nameIn" placeholder="e.g. Ahmed Mohamed" autocomplete="off" />
+  </div>
+  <div class="ferr" id="nameErr">Please enter your name to continue.</div>
+  <p class="hint">Your name is saved alongside your schedule choice in Google Sheets.</p>
+  <div class="brow">
+    <button class="btn btn-p" onclick="step2()">
+      Next · اختيار الجدول
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- ══════════ STEP 2 — PICK SCHEDULE ══════════ -->
+<div class="panel hidden" id="step2">
+  <div class="ptitle">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C9943A" stroke-width="2" stroke-linecap="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+    Choose Your Preferred Schedule
+  </div>
+
+  <div class="grid">
+    <!-- ─ Option A ─ -->
+    <label class="ocard" id="cA" onclick="pick('A')">
+      <input type="radio" name="sch" value="A">
+      <div class="oh">
+        <div class="ol">Option A</div><div class="ot">Schedule One</div>
+        <div class="ock" id="ckA"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div>
+      </div>
+      <div class="gstrip"></div>
+      <table class="otbl">
+        <tr><td>Saturday</td><td><span class="chip">Embedded Systems</span></td></tr>
+        <tr><td>Sunday</td><td><span class="chip">Quantitative</span></td></tr>
+        <tr><td>Monday</td><td><span class="chip">Bio Informatics</span></td></tr>
+        <tr><td>Tuesday</td><td><span class="chip">Computer Vision</span></td></tr>
+        <tr><td>Wednesday</td><td><span class="chip">Elective 3</span></td></tr>
+        <tr><td>Thursday</td><td><span class="chip">Bio Analytics</span></td></tr>
+        <tr><td>Saturday</td><td><span class="chip">Equipment</span></td></tr>
+      </table>
+    </label>
+
+    <!-- ─ Option B ─ -->
+    <label class="ocard" id="cB" onclick="pick('B')">
+      <input type="radio" name="sch" value="B">
+      <div class="oh">
+        <div class="ol">Option B</div><div class="ot">Schedule Two</div>
+        <div class="ock" id="ckB"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div>
+      </div>
+      <div class="gstrip"></div>
+      <table class="otbl">
+        <tr><td>Saturday</td><td><span class="chip">Embedded Systems</span></td></tr>
+        <tr><td>Sunday</td><td><span class="chip">Analysis</span></td></tr>
+        <tr><td>Monday</td><td><span class="chip">Informatics</span></td></tr>
+        <tr><td>Tuesday</td><td><span class="chip">Computer Vision</span></td></tr>
+        <tr><td>Wednesday</td><td><span class="chip">Elective 3</span></td></tr>
+        <tr><td>Thursday</td><td><span class="chip">Equipment</span></td></tr>
+        <tr><td>Saturday</td><td><span class="chip">Quantitative</span></td></tr>
+      </table>
+    </label>
+
+    <!-- ─ Option C ─ -->
+    <label class="ocard" id="cC" onclick="pick('C')">
+      <input type="radio" name="sch" value="C">
+      <div class="oh">
+        <div class="ol">Option C</div><div class="ot">Schedule Three</div>
+        <div class="ock" id="ckC"><svg width="11" height="11" viewBox="0 0 12 12" fill="none"><polyline points="2,6 5,9 10,3" stroke="white" stroke-width="2" stroke-linecap="round"/></svg></div>
+      </div>
+      <div class="gstrip"></div>
+      <table class="otbl">
+        <tr><td>Saturday</td><td><span class="chip">Embedded Systems</span></td></tr>
+        <tr><td>Sunday</td><td><span class="chip">Equipment</span></td></tr>
+        <tr><td>Monday</td><td><span class="chip">Bio Informatics</span></td></tr>
+        <tr><td>Tuesday</td><td><span class="chip">Computer Vision</span></td></tr>
+        <tr><td>Wednesday</td><td><span class="chip">Elective 3</span></td></tr>
+        <tr><td>Thursday</td><td><span class="chip">Bio Analytical</span></td></tr>
+        <tr><td>Saturday</td><td><span class="chip">Quantitative</span></td></tr>
+      </table>
+    </label>
+  </div>
+
+  <div class="ferr" id="pickErr" style="display:none;">Please select a schedule before submitting.</div>
+
+  <div class="smsg e" id="errMsg">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    <span id="errTxt">Something went wrong — please try again.</span>
+  </div>
+
+  <div class="brow">
+    <button class="btn btn-s" onclick="step1()">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back
+    </button>
+    <button class="btn btn-p" id="subBtn" onclick="submit()" disabled>
+      <span id="subLbl">Submit Vote ✦</span>
+      <div class="spin" id="subSpin"></div>
+    </button>
+  </div>
+</div>
+
+<!-- ══════════ STEP 3 — CONFIRMATION ══════════ -->
+<div class="panel hidden" id="step3">
+  <div class="cscreen">
+    <svg class="cmoon" width="88" height="88" viewBox="0 0 90 90" fill="none">
+      <circle cx="45" cy="45" r="42" fill="rgba(201,148,58,.09)" stroke="rgba(201,148,58,.18)" stroke-width="1"/>
+      <circle cx="45" cy="45" r="30" fill="rgba(201,148,58,.07)" stroke="rgba(201,148,58,.12)" stroke-width="1"/>
+      <path d="M38 22C22 22 12 33 12 47c0 13 9 21 19 21-9-5-11-14-9-24C24 29 37 22 50 24c-3.5-1.2-7.5-2-12-2Z" fill="#C9943A"/>
+      <polygon points="62,15 64,23 72,23 66,28 68,36 62,31 56,36 58,28 52,23 60,23" fill="#C9943A"/>
+      <circle cx="22" cy="22" r="2" fill="#F0C96A" opacity=".55"/>
+      <circle cx="70" cy="68" r="1.5" fill="#F0C96A" opacity=".45"/>
+      <circle cx="71" cy="30" r="1" fill="#F0C96A" opacity=".65"/>
+    </svg>
+    <div class="ctitle">Vote Submitted! 🎉</div>
+    <div class="carabic">عيد مبارك وتوفيق في الامتحانات</div>
+    <p class="csub">Eid Mubarak · Best of luck in your midterms!</p>
+    <div class="ccard">
+      <p>👤 <strong>Name:</strong> <span id="cName"></span></p>
+      <p>📅 <strong>Preferred Schedule:</strong></p>
+      <div><span class="cbadge" id="cChoice"></span></div>
+      <div class="spill">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Saved to Google Sheets ✦
+      </div>
+    </div>
+    <button class="btn btn-s" onclick="reset()" style="margin:0 auto;">↩ Submit Another Response</button>
+  </div>
+</div>
+
+<!-- ══════════ ARABESQUE FOOTER BAND ══════════ -->
+<div class="ara">
+  <svg viewBox="0 0 900 36" fill="none" style="width:100%;height:36px">
+    <defs>
+      <pattern id="ap" x="0" y="0" width="90" height="36" patternUnits="userSpaceOnUse">
+        <polygon points="45,3 55,18 45,33 35,18" fill="none" stroke="#C9943A" stroke-width="1"/>
+        <polygon points="45,9 51,18 45,27 39,18" fill="none" stroke="#C9943A" stroke-width=".6" opacity=".55"/>
+        <line x1="0" y1="18" x2="35" y2="18" stroke="#C9943A" stroke-width=".8" opacity=".38"/>
+        <line x1="55" y1="18" x2="90" y2="18" stroke="#C9943A" stroke-width=".8" opacity=".38"/>
+        <circle cx="45" cy="18" r="2" fill="#C9943A" opacity=".65"/>
+        <circle cx="0" cy="18" r="1.5" fill="#C9943A" opacity=".38"/>
+        <circle cx="90" cy="18" r="1.5" fill="#C9943A" opacity=".38"/>
+      </pattern>
+    </defs>
+    <rect width="900" height="36" fill="url(#ap)"/>
+  </svg>
+</div>
+
+<footer>
+  <p class="fa">عيد مبارك · Eid Al Fitr 1446 🌙</p>
+  <p class="fb">Powered by Google Sheets · All votes saved in real-time</p>
+</footer>
+
+</div><!-- /wrap -->
+
+<script>
+// ══════════════════════════════════════════════════════
+//  ↓↓ PASTE YOUR WEB APP URL HERE after deploying ↓↓
+//  Or leave empty — the in-page setup banner handles it
+// ══════════════════════════════════════════════════════
+const HARDCODED_URL = "https://script.google.com/macros/s/AKfycbxdEZ1cYvaRTakxn4Op3LQ3HKHyR8xJ7IujCDdPr7t1txIgHfQlAaWzh5DMLdIP_J0/exec";
+
+// ─── state ───
+let SCRIPT_URL = HARDCODED_URL || localStorage.getItem("eidFormUrl") || "";
+let chosen = null;
+
+const LABELS = {
+  A: "Option A — Schedule One",
+  B: "Option B — Schedule Two",
+  C: "Option C — Schedule Three"
+};
+
+// ─── init ───
+(function(){
+  // particles
+  const c = document.getElementById("pts");
+  for(let i=0;i<60;i++){
+    const s=document.createElement("div"); s.className="pt";
+    s.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*4}s;--dl:${Math.random()*6}s;width:${2+Math.random()*3}px;height:${2+Math.random()*3}px;background:${Math.random()>.5?"#C9943A":"#2A9D8F"}`;
+    c.appendChild(s);
+  }
+  // restore saved URL
+  if(SCRIPT_URL){
+    document.getElementById("urlIn").value = SCRIPT_URL;
+    setUrlStatus(true);
+    document.getElementById("setupBanner").style.opacity = "0.55";
+  }
+  setStep(1);
+})();
+
+// ─── URL setup ───
+function saveUrl(){
+  const v = document.getElementById("urlIn").value.trim();
+  if(!v || !v.startsWith("https://script.google.com")){
+    setUrlStatus(false, "✗ That doesn't look right. The URL must start with https://script.google.com");
+    return;
+  }
+  SCRIPT_URL = v;
+  localStorage.setItem("eidFormUrl", v);
+  setUrlStatus(true);
+  document.getElementById("setupBanner").style.opacity = "0.55";
+}
+function setUrlStatus(ok, msg){
+  const el = document.getElementById("urlSt");
+  el.className = "url-st " + (ok?"ok":"no");
+  el.textContent = ok
+    ? "✓ Connected! Votes will be saved directly to your Google Sheet."
+    : (msg || "⚠ No URL saved yet — votes won't be recorded until you complete setup.");
+}
+
+// ─── steps ───
+function setStep(n){
+  [1,2,3].forEach(i=>{
+    document.getElementById("step"+i).classList.toggle("hidden", i!==n);
+    const c=document.getElementById("sc"+i), l=document.getElementById("sl"+i);
+    c.classList.remove("active","done"); l.classList.remove("active","done");
+    if(i<n){c.classList.add("done");l.classList.add("done");c.textContent="✓";}
+    else if(i===n){c.classList.add("active");l.classList.add("active");c.textContent=i;}
+    else c.textContent=i;
+  });
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function step2(){
+  const name = document.getElementById("nameIn").value.trim();
+  if(!name){
+    const inp = document.getElementById("nameIn");
+    inp.classList.add("err");
+    document.getElementById("nameErr").classList.add("show");
+    inp.focus();
+    setTimeout(()=>inp.classList.remove("err"),500);
+    return;
+  }
+  document.getElementById("nameErr").classList.remove("show");
+  setStep(2);
+}
+
+function step1(){ setStep(1); }
+
+function pick(opt){
+  chosen = opt;
+  ["A","B","C"].forEach(o=>document.getElementById("c"+o).classList.toggle("sel",o===opt));
+  document.getElementById("subBtn").disabled = false;
+  document.getElementById("pickErr").style.display = "none";
+  document.getElementById("errMsg").classList.remove("on");
+}
+
+// ─── submit ───
+async function submit(){
+  const name = document.getElementById("nameIn").value.trim();
+  if(!chosen){ document.getElementById("pickErr").style.display="block"; return; }
+  if(!SCRIPT_URL){ showErr("⚠ Google Sheets URL not set — complete the setup above first."); return; }
+
+  const ts = new Date().toLocaleString("en-GB",{
+    day:"2-digit",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"
+  });
+
+  setLoading(true);
+  document.getElementById("errMsg").classList.remove("on");
+
+  try {
+    // Apps Script Web Apps require no-cors — the response is opaque but the write still happens
+    await fetch(SCRIPT_URL, {
+      method:"POST",
+      mode:"no-cors",
+      headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({ name, choice: chosen, label: LABELS[chosen], timestamp: ts })
+    });
+    // no-cors gives an opaque response; reaching here = network succeeded
+    setLoading(false);
+    document.getElementById("cName").textContent = name;
+    document.getElementById("cChoice").textContent = LABELS[chosen];
+    setStep(3);
+  } catch(err){
+    setLoading(false);
+    showErr("Network error: " + err.message);
+  }
+}
+
+function setLoading(on){
+  document.getElementById("subBtn").disabled = on;
+  document.getElementById("subLbl").style.opacity = on ? "0" : "1";
+  document.getElementById("subSpin").classList.toggle("on", on);
+}
+function showErr(msg){
+  document.getElementById("errTxt").textContent = msg;
+  document.getElementById("errMsg").classList.add("on");
+}
+
+function reset(){
+  chosen = null;
+  document.getElementById("nameIn").value = "";
+  document.getElementById("nameErr").classList.remove("show");
+  ["A","B","C"].forEach(o=>document.getElementById("c"+o).classList.remove("sel"));
+  document.getElementById("subBtn").disabled = true;
+  document.getElementById("errMsg").classList.remove("on");
+  document.getElementById("pickErr").style.display = "none";
+  setStep(1);
+}
+
+// Enter key on name field
+document.getElementById("nameIn").addEventListener("keydown",e=>{ if(e.key==="Enter") step2(); });
+</script>
+</body>
+</html>
